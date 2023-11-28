@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://chx363bnsttiw"]
+
+[ext_resource type="Texture2D" uid="uid://lh7m0x0wl2u5" path="res://assets/graphics/projectiles/player_projectile.png" id="1_dqsrh"]
+[ext_resource type="Script" path="res://scenes/projectiles/playerProjectile.gd" id="1_o164m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yy7cx"]
+radius = 2.0
+height = 12.0
+
+[node name="playerProjectile" type="Area2D"]
+script = ExtResource("1_o164m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 11)
+texture = ExtResource("1_dqsrh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_yy7cx")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
