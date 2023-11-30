@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://djywwx5jgx7oj"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/enemyProjectile.gd" id="1_aw30l"]
+[ext_resource type="Texture2D" uid="uid://c5ugf4mgwe8pn" path="res://assets/graphics/projectiles/projectile2.png" id="2_lgfjg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x7ug6"]
+radius = 3.0
+
+[node name="enemyProjectile" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_aw30l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lgfjg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x7ug6")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 3.971
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

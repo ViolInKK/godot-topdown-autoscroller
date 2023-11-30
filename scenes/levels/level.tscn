@@ -10,4 +10,8 @@ script = ExtResource("1_jk4y2")
 
 [node name="Projectiles" type="Node2D" parent="."]
 
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Items" type="Node2D" parent="."]
+
 [connection signal="player_shoot" from="Player" to="." method="_on_player_player_shoot"]

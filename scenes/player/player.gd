@@ -1,30 +1,43 @@
 extends CharacterBody2D
 
-signal player_shoot
+signal player_shoot(position: Vector2)
 
-const SPEED: int = 300
-const ACEL_SPEED: int = 500
+const ACCEL: int = 2800
+const FRICTION: int = 2000
+const MAX_SPEED: int = 300
+const MAX_ACEL_SPEED: int = 400
 
-var can_shoot: bool = true
+var canShoot: bool = true
 
+func hit() -> void:
+	print("player got hit")
+	print(Globals.health)
 
-func _on_reload_timeout():
-	can_shoot = true
+func _on_reload_timeout() -> void:
+	canShoot = true
 	
-func HandleShoot():
-	if(Input.is_action_pressed("shoot") and can_shoot):
-		emit_signal("player_shoot")
-		can_shoot = false
+func HandleShoot() -> void:
+	if(Input.is_action_pressed("shoot") and canShoot):
+		player_shoot.emit($Marker2D.global_position)
+		canShoot = false
 		$Reload.start()
 
-
-func HandleMovement(delta):
-	var direction = Input.get_vector("left", "right", "forward", "backward")
-	if(Input.is_action_pressed("acceleration")):
-		position += direction * delta * ACEL_SPEED
+func HandleMovement(delta: float) -> void:
+	var direction: Vector2 = Input.get_vector("left", "right", "forward", "backward")
+	if (direction == Vector2.ZERO):
+		if(velocity.length() > (FRICTION * delta)): 
+			velocity -= velocity.normalized() * (FRICTION * delta)
+		else:
+			velocity = Vector2.ZERO
 	else:
-		position += direction * delta * SPEED
-
-func _process(delta):
+		velocity += direction * ACCEL * delta
+		if(Input.is_action_pressed("acceleration")):
+			velocity = velocity.limit_length(MAX_ACEL_SPEED)
+		else:
+			velocity = velocity.limit_length(MAX_SPEED)
+	move_and_slide()
+	
+func _process(delta: float) -> void:
 	HandleShoot()
 	HandleMovement(delta)
+

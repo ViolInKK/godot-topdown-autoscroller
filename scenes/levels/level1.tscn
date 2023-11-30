@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://nauvo5di08js"]
+
+[ext_resource type="PackedScene" uid="uid://dq6vwtjv7w5cn" path="res://scenes/levels/level.tscn" id="1_pcjxi"]
+[ext_resource type="Texture2D" uid="uid://bxmhe35bt8f1e" path="res://assets/graphics/background/background1.png" id="2_45v06"]
+[ext_resource type="Script" path="res://scenes/levels/level1.gd" id="2_irje6"]
+[ext_resource type="PackedScene" uid="uid://gjfgm6rc6ik7" path="res://scenes/enemies/enemy1.tscn" id="3_47ofe"]
+[ext_resource type="PackedScene" uid="uid://2io36dyq4d1x" path="res://scenes/items/item.tscn" id="5_pmxub"]
+
+[node name="Level1" instance=ExtResource("1_pcjxi")]
+script = ExtResource("2_irje6")
+
+[node name="Background1" type="Sprite2D" parent="." index="0"]
+texture_repeat = 2
+texture = ExtResource("2_45v06")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="enemy1" parent="Enemies" index="0" instance=ExtResource("3_47ofe")]
+position = Vector2(300, 50)
+scale = Vector2(1, 1.00524)
+
+[node name="item" parent="Items" index="0" instance=ExtResource("5_pmxub")]
+position = Vector2(224, 34)
+
+[connection signal="enemy_shoot" from="Enemies/enemy1" to="." method="_on_enemy_1_enemy_shoot"]
