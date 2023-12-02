@@ -3,7 +3,7 @@ class_name Item
 
 const ITEM_SPEED: int = 100
 
-func _on_body_entered(body) -> void:
+func _on_body_entered(_body) -> void:
 	print("Picked up power up")
 	queue_free()
 

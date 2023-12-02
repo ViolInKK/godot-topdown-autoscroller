@@ -16,10 +16,13 @@ texture = ExtResource("1_ool43")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qww15")
 
-[node name="Reload" type="Timer" parent="."]
-wait_time = 0.1
-
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -30)
 
+[node name="Reload" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="IFramers" type="Timer" parent="."]
+
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
+[connection signal="timeout" from="IFramers" to="." method="_on_i_framers_timeout"]
