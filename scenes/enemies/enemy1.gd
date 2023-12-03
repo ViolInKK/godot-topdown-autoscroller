@@ -4,7 +4,7 @@ class_name enemy1
 signal enemy_shoot(position: Vector2)
 
 var health: int = 5
-var can_shoot: bool = true
+var can_shoot: bool = false
 
 func die() -> void:
 	queue_free()
