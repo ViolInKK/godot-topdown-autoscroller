@@ -24,10 +24,13 @@ func IFramesAnimation() -> void:
 	
 func hit() -> void:
 	if(not IFrames):
-		print("player got hit")
+		Globals.health -= 1
 		IFrames = true
 		$IFramers.start()
 		IFramesAnimation()
+	if(Globals.health <= 0):
+		print("player dead")
+		queue_free()
 		
 func HandleShoot() -> void:
 	if(Input.is_action_pressed("shoot") and canShoot):

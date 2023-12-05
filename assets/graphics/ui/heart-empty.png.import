@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2tpgq6j1x3hq"
-path="res://.godot/imported/enemy1.png-56eab2a93810a8137a1be0455d12545e.ctex"
+uid="uid://ceup1yunhusx6"
+path="res://.godot/imported/heart-empty.png-3e1ee5afb77a940613322c602c1d6f4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/enemies/enemy1.png"
-dest_files=["res://.godot/imported/enemy1.png-56eab2a93810a8137a1be0455d12545e.ctex"]
+source_file="res://assets/graphics/ui/heart-empty.png"
+dest_files=["res://.godot/imported/heart-empty.png-3e1ee5afb77a940613322c602c1d6f4b.ctex"]
 
 [params]
 

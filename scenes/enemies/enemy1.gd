@@ -22,7 +22,7 @@ func hit() -> void:
 	hitAnimation()
 
 func _process(_delta: float) -> void:
-	if(health == 0):	
+	if(health <= 0):	
 		die()
 	if(can_shoot):
 		enemy_shoot.emit(position)

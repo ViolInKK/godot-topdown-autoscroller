@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://2io36dyq4d1x"]
+[gd_scene load_steps=3 format=3 uid="uid://2io36dyq4d1x"]
 
 [ext_resource type="Script" path="res://scenes/items/item.gd" id="1_ds51h"]
-[ext_resource type="Texture2D" uid="uid://dfgam535fj2kd" path="res://assets/graphics/items/healthpack.png" id="2_c5ukj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgh2s"]
 size = Vector2(18, 18)
@@ -11,7 +10,6 @@ collision_layer = 8
 script = ExtResource("1_ds51h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_c5ukj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

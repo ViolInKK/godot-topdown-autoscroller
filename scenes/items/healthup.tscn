@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1cn7ch57k0ur"]
+
+[ext_resource type="PackedScene" uid="uid://2io36dyq4d1x" path="res://scenes/items/item.tscn" id="1_rpryq"]
+[ext_resource type="Script" path="res://scenes/items/healthup.gd" id="2_8xyu4"]
+[ext_resource type="Texture2D" uid="uid://dfgam535fj2kd" path="res://assets/graphics/items/healthpack.png" id="2_oxvhs"]
+
+[node name="item" instance=ExtResource("1_rpryq")]
+script = ExtResource("2_8xyu4")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_oxvhs")
