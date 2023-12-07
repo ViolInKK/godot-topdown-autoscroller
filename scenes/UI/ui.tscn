@@ -1,14 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0fbsbt85b7nb"]
+[gd_scene load_steps=5 format=3 uid="uid://d0fbsbt85b7nb"]
 
-[ext_resource type="Script" path="res://scenes/UI/HBoxContainer.gd" id="1_t2ji5"]
+[ext_resource type="Script" path="res://scenes/UI/ui.gd" id="1_oxo8v"]
+
+[sub_resource type="Theme" id="Theme_8vqeq"]
+
+[sub_resource type="FontFile" id="FontFile_vi5ln"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/24/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/24/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_50vue"]
+font = SubResource("FontFile_vi5ln")
+font_size = 24
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_oxo8v")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HeartsContainer" type="HBoxContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("1_t2ji5")
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_8vqeq")
+label_settings = SubResource("LabelSettings_50vue")
+horizontal_alignment = 1
+vertical_alignment = 2

@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends CanvasLayer
 
 var fullHeart: CompressedTexture2D = preload("res://assets/graphics/ui/heart-full.png")
 var emptyHeart: CompressedTexture2D = preload("res://assets/graphics/ui/heart-empty.png")
@@ -6,7 +6,7 @@ var emptyHeart: CompressedTexture2D = preload("res://assets/graphics/ui/heart-em
 func _ready():
 	Globals.connect("health_change", update_health)
 	Globals.connect("score_update", update_score)
-	$Score.text = 0
+	$Score.text = "0"
 	instanciate_health()
 
 func instanciate_health() -> void:
@@ -25,4 +25,4 @@ func update_health() -> void:
 			heartContainers[i].texture = emptyHeart
 
 func update_score() -> void:
-	$"Score".text = Globals.score
+	$"Score".text = str(Globals.score)

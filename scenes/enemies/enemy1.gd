@@ -7,6 +7,7 @@ var health: int = 5
 var can_shoot: bool = false
 
 func die() -> void:
+	Globals.score += 100
 	queue_free()
 
 func _on_reload_timeout() -> void:

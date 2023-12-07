@@ -20,7 +20,7 @@ func _on_item_spawn_timeout():
 	newItem.position = Vector2(randi_range(50, int(get_viewport_rect().size.x) - 50), -30)
 	$Items.add_child(newItem, true)
 
-func _on_timer_timeout():
+func _on_enemy_spawn_timeout():
 	var newEnemy: enemy1 = enemy.instantiate()
 	newEnemy.position = Vector2(randi_range(50, int(get_viewport_rect().size.x) - 50), randi()%10+20)
 	newEnemy.enemy_shoot.connect(self._on_enemy_1_enemy_shoot)

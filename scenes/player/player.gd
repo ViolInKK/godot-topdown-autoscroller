@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal player_shoot(position: Vector2)
+signal player_death
 
 const ACCEL: int = 2800
 const FRICTION: int = 2000
@@ -29,7 +30,7 @@ func hit() -> void:
 		$IFramers.start()
 		IFramesAnimation()
 	if(Globals.health <= 0):
-		print("player dead")
+		player_death.emit()
 		queue_free()
 		
 func HandleShoot() -> void:

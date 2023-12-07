@@ -1,6 +1,14 @@
 extends Node
 
 signal health_change
+signal score_update
+
+var score: int = 0:
+	get:
+		return score
+	set(value):
+		score = value
+		score_update.emit()
 
 var health: int = 3:
 	get:

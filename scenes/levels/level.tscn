@@ -17,4 +17,18 @@ script = ExtResource("1_jk4y2")
 
 [node name="UI" parent="." instance=ExtResource("3_uu5rj")]
 
+[node name="IncreaseScore" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="EnemySpawn" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[node name="ItemSpawn" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
 [connection signal="player_shoot" from="Player" to="." method="_on_player_player_shoot"]
+[connection signal="timeout" from="IncreaseScore" to="." method="_on_increase_score_timeout"]
