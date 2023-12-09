@@ -26,6 +26,8 @@ func IFramesAnimation() -> void:
 func hit() -> void:
 	if(not IFrames):
 		Globals.health -= 1
+		Globals.damage = 1
+		Globals.amountOfGuns = 1
 		IFrames = true
 		$IFramers.start()
 		IFramesAnimation()
@@ -38,20 +40,42 @@ func HandleShoot() -> void:
 		player_shoot.emit($Marker2D.global_position)
 		canShoot = false
 		$Reload.start()
+		
+func handleSkew(direction: Vector2) -> void:
+	if(direction == Vector2.ZERO):
+		if($"Player".skew > 0 and $"Player".rotation < 0):
+			$"Player".skew = max(deg_to_rad(0), $"Player".skew - deg_to_rad(0.8))
+			$"Player".rotation = min(deg_to_rad(0), $"Player".rotation + deg_to_rad(0.8))
+		else:
+			$"Player".skew = min(deg_to_rad(0), $"Player".skew + deg_to_rad(0.8))
+			$"Player".rotation = max(deg_to_rad(0), $"Player".rotation - deg_to_rad(0.8))
+	if(direction == Vector2.LEFT):
+		$"Player".skew = min(deg_to_rad(20), $"Player".skew + deg_to_rad(0.8))
+		$"Player".rotation = max(deg_to_rad(-10), $"Player".rotation - deg_to_rad(0.8))
+		print($"Player".skew, $"Player".rotation)
+	if(direction == Vector2.RIGHT):
+		$"Player".skew = max(deg_to_rad(-20), $"Player".skew - deg_to_rad(0.8))
+		$"Player".rotation = min(deg_to_rad(10), $"Player".rotation + deg_to_rad(0.8))
+		print($"Player".skew, $"Player".rotation)		
+		
+	
 
 func HandleMovement(delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("left", "right", "forward", "backward")
-	if (direction == Vector2.ZERO):
-		if(velocity.length() > (FRICTION * delta)): 
+	if(direction == Vector2.ZERO):
+		if(velocity.length() > (FRICTION * delta)):
+			handleSkew(direction)
 			velocity -= velocity.normalized() * (FRICTION * delta)
 		else:
-			velocity = Vector2.ZERO
+			return
 	else:
 		velocity += direction * ACCEL * delta
 		if(Input.is_action_pressed("acceleration")):
 			velocity = velocity.limit_length(MAX_ACEL_SPEED)
+			handleSkew(direction)
 		else:
 			velocity = velocity.limit_length(MAX_SPEED)
+			handleSkew(direction)
 	move_and_slide()
 	
 func _process(delta: float) -> void:

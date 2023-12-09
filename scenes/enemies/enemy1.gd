@@ -15,6 +15,7 @@ func _on_reload_timeout() -> void:
 	
 func hitAnimation() -> void:
 	var hitTween = get_tree().create_tween()
+	#Red blinking animation
 	hitTween.tween_property($Sprite2D, "modulate", Color(1, 0.5, 0.5, 1), 0.08)
 	hitTween.tween_property($Sprite2D, "modulate", Color.WHITE, 0.08)
 	
