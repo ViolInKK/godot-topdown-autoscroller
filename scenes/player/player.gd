@@ -7,6 +7,8 @@ const ACCEL: int = 2800
 const FRICTION: int = 2000
 const MAX_SPEED: int = 300
 const MAX_ACEL_SPEED: int = 400
+const SKEW_RAD_DELTA = 1.1
+const MAX_SKEW = 20
 
 var IFrames: bool = false
 var canShoot: bool = true
@@ -44,19 +46,19 @@ func HandleShoot() -> void:
 func handleSkew(direction: Vector2) -> void:
 	if(direction == Vector2.ZERO):
 		if($"Player".skew > 0 and $"Player".rotation < 0):
-			$"Player".skew = max(deg_to_rad(0), $"Player".skew - deg_to_rad(0.8))
-			$"Player".rotation = min(deg_to_rad(0), $"Player".rotation + deg_to_rad(0.8))
+			$"Player".skew = max(deg_to_rad(0), $"Player".skew - deg_to_rad(SKEW_RAD_DELTA))
+			$"Player".rotation = min(deg_to_rad(0), $"Player".rotation + deg_to_rad(SKEW_RAD_DELTA))
 		else:
-			$"Player".skew = min(deg_to_rad(0), $"Player".skew + deg_to_rad(0.8))
-			$"Player".rotation = max(deg_to_rad(0), $"Player".rotation - deg_to_rad(0.8))
-	if(direction == Vector2.LEFT):
-		$"Player".skew = min(deg_to_rad(20), $"Player".skew + deg_to_rad(0.8))
-		$"Player".rotation = max(deg_to_rad(-10), $"Player".rotation - deg_to_rad(0.8))
-		print($"Player".skew, $"Player".rotation)
-	if(direction == Vector2.RIGHT):
-		$"Player".skew = max(deg_to_rad(-20), $"Player".skew - deg_to_rad(0.8))
-		$"Player".rotation = min(deg_to_rad(10), $"Player".rotation + deg_to_rad(0.8))
-		print($"Player".skew, $"Player".rotation)		
+			$"Player".skew = min(deg_to_rad(0), $"Player".skew + deg_to_rad(SKEW_RAD_DELTA))
+			$"Player".rotation = max(deg_to_rad(0), $"Player".rotation - deg_to_rad(SKEW_RAD_DELTA))
+	#Left skew
+	if(direction.x < 0):
+		$"Player".skew = min(deg_to_rad(MAX_SKEW), $"Player".skew + deg_to_rad(SKEW_RAD_DELTA))
+		$"Player".rotation = max(deg_to_rad(-MAX_SKEW), $"Player".rotation - deg_to_rad(SKEW_RAD_DELTA))
+	#Right skew
+	if(direction.x > 0):
+		$"Player".skew = max(deg_to_rad(-MAX_SKEW), $"Player".skew - deg_to_rad(SKEW_RAD_DELTA))
+		$"Player".rotation = min(deg_to_rad(MAX_SKEW), $"Player".rotation + deg_to_rad(SKEW_RAD_DELTA))		
 		
 	
 
@@ -64,7 +66,6 @@ func HandleMovement(delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("left", "right", "forward", "backward")
 	if(direction == Vector2.ZERO):
 		if(velocity.length() > (FRICTION * delta)):
-			handleSkew(direction)
 			velocity -= velocity.normalized() * (FRICTION * delta)
 		else:
 			return
@@ -72,10 +73,9 @@ func HandleMovement(delta: float) -> void:
 		velocity += direction * ACCEL * delta
 		if(Input.is_action_pressed("acceleration")):
 			velocity = velocity.limit_length(MAX_ACEL_SPEED)
-			handleSkew(direction)
 		else:
 			velocity = velocity.limit_length(MAX_SPEED)
-			handleSkew(direction)
+	handleSkew(direction)
 	move_and_slide()
 	
 func _process(delta: float) -> void:

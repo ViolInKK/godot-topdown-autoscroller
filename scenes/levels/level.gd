@@ -1,6 +1,8 @@
 extends Node2D
 class_name LevelParent 
 
+@export var maxAmountOfEnemies = 3
+
 var player_projectile_scene: PackedScene = preload("res://scenes/projectiles/playerProjectile.tscn")
 
 func _on_player_player_shoot(pos: Vector2) -> void:
@@ -16,3 +18,11 @@ func _on_player_player_death():
 	$"EnemySpawn".stop()
 	$"ItemSpawn".stop()
 	
+func handleMaxAmountOfEnemies():
+	if($"Enemies".get_child_count() >= maxAmountOfEnemies and not $EnemySpawn.is_stopped()):
+		$EnemySpawn.stop()
+	elif($"Enemies".get_child_count() < maxAmountOfEnemies and $EnemySpawn.is_stopped()):
+		$EnemySpawn.start()
+	
+func _process(_delta):
+	handleMaxAmountOfEnemies()
