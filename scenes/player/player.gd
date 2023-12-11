@@ -13,11 +13,17 @@ const MAX_SKEW = 20
 var IFrames: bool = false
 var canShoot: bool = true
 
+func _ready():
+	Globals.connect("sheild_change", shieldChange)
+	
 func _on_reload_timeout() -> void:
 	canShoot = true
 	
 func _on_i_framers_timeout() -> void:
 	IFrames = false
+	
+func shieldChange() -> void:
+	$"Shield".visible = true
 
 func IFramesAnimation() -> void:
 	var IFramesTween = get_tree().create_tween()
@@ -26,7 +32,13 @@ func IFramesAnimation() -> void:
 		IFramesTween.tween_property($Player, "modulate", Color.WHITE, 0.25)
 	
 func hit() -> void:
-	if(not IFrames):
+	if(Globals.isSheild):
+		IFrames = true
+		$IFramers.start()
+		IFramesAnimation()
+		Globals.isSheild = false
+		$"Shield".visible = false
+	if(not IFrames and not Globals.isSheild):
 		Globals.health -= 1
 		Globals.damage = 1
 		Globals.amountOfGuns = 1

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/items/healthup.gd" id="2_8xyu4"]
 [ext_resource type="Texture2D" uid="uid://dfgam535fj2kd" path="res://assets/graphics/items/healthpack.png" id="2_oxvhs"]
 
-[node name="item" instance=ExtResource("1_rpryq")]
+[node name="HealthUp" instance=ExtResource("1_rpryq")]
 script = ExtResource("2_8xyu4")
 
 [node name="Sprite2D" parent="." index="0"]

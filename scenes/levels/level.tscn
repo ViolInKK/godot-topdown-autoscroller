@@ -26,7 +26,7 @@ wait_time = 2.5
 autostart = true
 
 [node name="ItemSpawn" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 5.0
 autostart = true
 
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]

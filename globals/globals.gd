@@ -2,6 +2,7 @@ extends Node
 
 signal health_change
 signal score_update
+signal sheild_change
 
 var score: int = 0:
 	get:
@@ -28,3 +29,10 @@ var amountOfGuns: int = 1:
 		return amountOfGuns
 	set(value):
 		amountOfGuns = value
+
+var isSheild: bool = false:
+	get:
+		return isSheild
+	set(value):
+		isSheild = value
+		sheild_change.emit()

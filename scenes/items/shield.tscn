@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bah2qe57k6qg5"]
+
+[ext_resource type="PackedScene" uid="uid://2io36dyq4d1x" path="res://scenes/items/item.tscn" id="1_ky863"]
+[ext_resource type="Script" path="res://scenes/items/shield.gd" id="2_cuebr"]
+[ext_resource type="Texture2D" uid="uid://b3wqvd2utxmdd" path="res://assets/graphics/items/shield.png" id="3_tn5ir"]
+
+[node name="Shield" instance=ExtResource("1_ky863")]
+script = ExtResource("2_cuebr")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_tn5ir")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0)

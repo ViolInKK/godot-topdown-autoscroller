@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/items/dmgup.gd" id="2_fmyap"]
 [ext_resource type="Texture2D" uid="uid://b4bh3bpwdg4i4" path="res://assets/graphics/items/dmgup.png" id="2_qy46t"]
 
-[node name="item" instance=ExtResource("1_r2tmc")]
+[node name="Dmgup" instance=ExtResource("1_r2tmc")]
 script = ExtResource("2_fmyap")
 
 [node name="Sprite2D" parent="." index="0"]

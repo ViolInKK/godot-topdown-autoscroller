@@ -4,9 +4,10 @@ var enemy_projectile_scene: PackedScene = preload("res://scenes/projectiles/enem
 var enemy: PackedScene = preload("res://scenes/enemies/enemy1.tscn")
 var healthupItem: PackedScene = preload("res://scenes/items/healthup.tscn")
 var dmgupItem: PackedScene = preload("res://scenes/items/dmgup.tscn")
+var shieldItem: PackedScene = preload("res://scenes/items/shield.tscn")
 
 var enemies = [enemy, enemy, enemy]
-var items = [healthupItem, dmgupItem]
+var items = [healthupItem, dmgupItem, shieldItem]
 
 func _on_enemy_1_enemy_shoot(pos: Vector2) -> void:
 	for n in range(-1, 2):
