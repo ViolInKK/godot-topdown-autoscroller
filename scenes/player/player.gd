@@ -10,6 +10,11 @@ const MAX_ACEL_SPEED: int = 400
 const SKEW_RAD_DELTA = 1.1
 const MAX_SKEW = 20
 
+@onready var gunsLvls = {
+	1: $"Lvl1Guns".get_children(),
+	2: $"Lvl2Guns".get_children(),
+	3: $"Lvl3Guns".get_children(),
+}
 var IFrames: bool = false
 var canShoot: bool = true
 
@@ -40,8 +45,7 @@ func hit() -> void:
 		$"Shield".visible = false
 	if(not IFrames and not Globals.isSheild):
 		Globals.health -= 1
-		Globals.damage = 1
-		Globals.amountOfGuns = 1
+		Globals.resetBuffs()
 		IFrames = true
 		$IFramers.start()
 		IFramesAnimation()
@@ -51,7 +55,7 @@ func hit() -> void:
 		
 func HandleShoot() -> void:
 	if(Input.is_action_pressed("shoot") and canShoot):
-		var positions = $Lvl1Guns.get_children().map(func(marker): return marker.global_position)
+		var positions = gunsLvls[Globals.amountOfGuns].map(func(marker): return marker.global_position)
 		player_shoot.emit(positions)
 		canShoot = false
 		$Reload.start()

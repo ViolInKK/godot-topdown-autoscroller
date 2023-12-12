@@ -36,3 +36,7 @@ var isSheild: bool = false:
 	set(value):
 		isSheild = value
 		sheild_change.emit()
+		
+func resetBuffs() -> void:
+	amountOfGuns = 1
+	damage = 1
