@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal player_shoot(position: Vector2)
+signal player_shoot(positions: PackedVector2Array)
 signal player_death
 
 const ACCEL: int = 2800
@@ -51,9 +51,12 @@ func hit() -> void:
 		
 func HandleShoot() -> void:
 	if(Input.is_action_pressed("shoot") and canShoot):
-		player_shoot.emit($Marker2D.global_position)
+		var positions = $Lvl1Guns.get_children().map(func(marker): return marker.global_position)
+		player_shoot.emit(positions)
 		canShoot = false
 		$Reload.start()
+	
+	
 		
 func handleSkew(direction: Vector2) -> void:
 	if(direction == Vector2.ZERO):

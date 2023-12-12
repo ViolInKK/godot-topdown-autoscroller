@@ -13,22 +13,67 @@ script = ExtResource("1_88f3w")
 
 [node name="Player" type="Sprite2D" parent="."]
 texture = ExtResource("1_ool43")
+metadata/_edit_lock_ = true
 
 [node name="Shield" type="Sprite2D" parent="."]
 visible = false
 self_modulate = Color(1, 1, 1, 0.623529)
 texture = ExtResource("3_oakdo")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qww15")
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -30)
+metadata/_edit_lock_ = true
 
 [node name="Reload" type="Timer" parent="."]
 wait_time = 0.1
 
 [node name="IFramers" type="Timer" parent="."]
+
+[node name="Lvl1Guns" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Marker2D" type="Marker2D" parent="Lvl1Guns"]
+position = Vector2(0, -30)
+metadata/_edit_lock_ = true
+
+[node name="Lvl2Guns" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Marker2D" type="Marker2D" parent="Lvl2Guns"]
+position = Vector2(10, -16)
+metadata/_edit_lock_ = true
+
+[node name="Marker2D2" type="Marker2D" parent="Lvl2Guns"]
+position = Vector2(-10, -16)
+metadata/_edit_lock_ = true
+
+[node name="Marker2D3" type="Marker2D" parent="Lvl2Guns"]
+position = Vector2(0, -30)
+metadata/_edit_lock_ = true
+
+[node name="Lvl3Guns" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Marker2D" type="Marker2D" parent="Lvl3Guns"]
+position = Vector2(0, -30)
+metadata/_edit_lock_ = true
+
+[node name="Marker2D2" type="Marker2D" parent="Lvl3Guns"]
+position = Vector2(-10, -16)
+metadata/_edit_lock_ = true
+
+[node name="Marker2D3" type="Marker2D" parent="Lvl3Guns"]
+position = Vector2(-16, -16)
+metadata/_edit_lock_ = true
+
+[node name="Marker2D4" type="Marker2D" parent="Lvl3Guns"]
+position = Vector2(10, -16)
+metadata/_edit_lock_ = true
+
+[node name="Marker2D5" type="Marker2D" parent="Lvl3Guns"]
+position = Vector2(16, -16)
+metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
 [connection signal="timeout" from="IFramers" to="." method="_on_i_framers_timeout"]
