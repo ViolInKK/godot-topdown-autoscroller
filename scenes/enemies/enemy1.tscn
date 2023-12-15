@@ -1,25 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://gjfgm6rc6ik7"]
+[gd_scene load_steps=5 format=3 uid="uid://cuiduue2pb0tc"]
 
+[ext_resource type="PackedScene" uid="uid://d0vhybty2h8ov" path="res://scenes/enemies/enemy.tscn" id="1_dfm63"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy1.gd" id="1_u6cra"]
-[ext_resource type="Texture2D" uid="uid://2tpgq6j1x3hq" path="res://assets/graphics/enemies/enemy1.png" id="1_x68ho"]
+[ext_resource type="Texture2D" uid="uid://bq1ctvcgdntm2" path="res://assets/graphics/enemies/enemy2.png" id="3_oatgm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ex65y"]
-radius = 25.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuivf"]
+size = Vector2(42, 37)
 
-[node name="enemy1" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 3
+[node name="Enemy1" instance=ExtResource("1_dfm63")]
 script = ExtResource("1_u6cra")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_x68ho")
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -7)
+texture = ExtResource("3_oatgm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.01351, 1)
-shape = SubResource("CircleShape2D_ex65y")
-
-[node name="Reload" type="Timer" parent="."]
-wait_time = 1.03
-autostart = true
-
-[connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_iuivf")

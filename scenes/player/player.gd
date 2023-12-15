@@ -33,16 +33,16 @@ func IFramesAnimation() -> void:
 	
 func hit() -> void:
 	Globals.health -= 1
-	if(Globals.health <= 0):
-		player_death.emit()
-		queue_free()
-		return
 	if(Globals.isSheild):
 		IFrames = true
 		$IFramers.start()
 		IFramesAnimation()
 		Globals.isSheild = false
 		$"Shield".visible = false
+		return
+	if(Globals.health <= 0):
+		player_death.emit()
+		queue_free()
 		return
 	if(not IFrames and not Globals.isSheild):
 		Globals.resetBuffs()
@@ -99,7 +99,3 @@ func _ready():
 func _process(delta: float) -> void:
 	HandleShoot()
 	HandleMovement(delta)
-
-
-
-
