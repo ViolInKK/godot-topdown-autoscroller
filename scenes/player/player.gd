@@ -32,7 +32,6 @@ func IFramesAnimation() -> void:
 		IFramesTween.tween_property($Player, "modulate", Color.WHITE, 0.25)
 	
 func hit() -> void:
-	Globals.health -= 1
 	if(Globals.isSheild):
 		IFrames = true
 		$IFramers.start()
@@ -40,15 +39,15 @@ func hit() -> void:
 		Globals.isSheild = false
 		$"Shield".visible = false
 		return
-	if(Globals.health <= 0):
-		player_death.emit()
-		queue_free()
-		return
 	if(not IFrames and not Globals.isSheild):
+		Globals.health -= 1
 		Globals.resetBuffs()
 		IFrames = true
 		$IFramers.start()
 		IFramesAnimation()
+	if(Globals.health <= 0):
+		player_death.emit()
+		queue_free()
 		return
 		
 func HandleShoot() -> void:
