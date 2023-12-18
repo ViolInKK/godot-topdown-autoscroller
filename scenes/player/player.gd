@@ -54,6 +54,7 @@ func HandleShoot() -> void:
 	if(Input.is_action_pressed("shoot") and canShoot):
 		var positions = gunsLvls[Globals.amountOfGuns].map(func(marker): return marker.global_position)
 		player_shoot.emit(positions)
+		$Sound/ShootingSound.play()
 		canShoot = false
 		$Reload.start()
 	

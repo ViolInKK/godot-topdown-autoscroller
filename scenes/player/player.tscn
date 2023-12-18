@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctywgppdafgjd"]
+[gd_scene load_steps=6 format=3 uid="uid://ctywgppdafgjd"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_88f3w"]
 [ext_resource type="Texture2D" uid="uid://b15cvf66y0por" path="res://assets/graphics/player/player.png" id="1_ool43"]
 [ext_resource type="Texture2D" uid="uid://bndlfnccscsos" path="res://assets/graphics/player/player_shield.png" id="3_oakdo"]
+[ext_resource type="AudioStream" uid="uid://bdh3cexfbrl1u" path="res://assets/graphics/player/sound/test.wav" id="4_6t2dx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qww15"]
 size = Vector2(38, 42)
@@ -74,6 +75,14 @@ metadata/_edit_lock_ = true
 [node name="Marker2D5" type="Marker2D" parent="Lvl3Guns"]
 position = Vector2(16, -16)
 metadata/_edit_lock_ = true
+
+[node name="Sound" type="Node2D" parent="."]
+
+[node name="ShootingSound" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("4_6t2dx")
+volume_db = -4.0
+max_polyphony = 5
+panning_strength = 0.0
 
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
 [connection signal="timeout" from="IFramers" to="." method="_on_i_framers_timeout"]

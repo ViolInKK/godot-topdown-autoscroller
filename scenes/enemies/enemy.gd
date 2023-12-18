@@ -48,8 +48,10 @@ func _process(delta: float) -> void:
 		
 	if(randi_range(0,1)):
 		radius += 0.1
-		position = Vector2(sin(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2, cos(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2) + Vector2(startingPosition.x, startingPosition.y + 50)
+		position = Vector2(sin(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2, 
+				cos(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2) + Vector2(startingPosition.x, startingPosition.y + 50)
 	else:
 		radius -= 0.1
-		position = Vector2(sin(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2, cos(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2) + Vector2(startingPosition.x, startingPosition.y + 50)
+		position = Vector2(sin(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2, 
+				cos(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2) + Vector2(startingPosition.x, startingPosition.y + 50)
 		
