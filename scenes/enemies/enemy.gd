@@ -3,33 +3,53 @@ class_name enemy
 
 signal enemy_shoot(position: Vector2)
 
+@onready var startingPosition: Vector2 = position
+@onready var rotationDirection: bool = randi_range(0, 1)
+
+const MAX_RADIUS: float = 5.0
+const ROTATION_SPEED: float = 5.0
+
+var points: int = 100
 var health: int = 5
-var can_shoot: bool = false
+var d: float = 180.0
+var radius: float = 3.0
 
 func die() -> void:
-	Globals.score += 100
+	Globals.score += points
 	queue_free()
 
 func _on_reload_timeout() -> void:
-	can_shoot = true
+	enemy_shoot.emit(position)
+	$Reload.start()
 	
 func hitAnimation() -> void:
-	if(health <= 0):
-		return
 	var hitTween = get_tree().create_tween()
 	#Red blinking animation
 	hitTween.tween_property($Sprite2D, "modulate", Color(1, 0.5, 0.5, 1), 0.08)
 	hitTween.tween_property($Sprite2D, "modulate", Color.WHITE, 0.08)
 	
+func moveInAnimaion() -> void:
+	var moveInTween = get_tree().create_tween()
+	#Slowly move into the camera animation
+	moveInTween.tween_property($".", "position", Vector2($".".position.x, $".".position.y + 50), 0.5)
+
 func hit() -> void:
 	health -= Globals.damage
-	hitAnimation()
-
-func _process(_delta: float) -> void:
-	if(health <= 0):	
+	if(health <= 0):
 		die()
-	if(can_shoot):
-		enemy_shoot.emit(position)
-		can_shoot = false
-		$Reload.start()
-
+		return
+	hitAnimation()
+	
+func _process(delta: float) -> void:
+	if(rotationDirection):
+		d += delta
+	else:
+		d -= delta
+		
+	if(randi_range(0,1)):
+		radius += 0.1
+		position = Vector2(sin(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2, cos(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2) + Vector2(startingPosition.x, startingPosition.y + 50)
+	else:
+		radius -= 0.1
+		position = Vector2(sin(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2, cos(d * ROTATION_SPEED) * min(MAX_RADIUS, abs(radius))+2) + Vector2(startingPosition.x, startingPosition.y + 50)
+		
