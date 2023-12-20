@@ -8,11 +8,11 @@ signal enemy_shoot(position: Vector2)
 
 const MAX_RADIUS: float = 5.0
 const ROTATION_SPEED: float = 5.0
-
-var points: int = 100
-var health: int = 5
-var d: float = 180.0
+var d: float = 0.0
 var radius: float = 3.0
+
+var points: int
+var health: int
 
 func die() -> void:
 	Globals.score += points

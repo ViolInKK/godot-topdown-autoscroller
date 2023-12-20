@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://clwdr3cv76c0q"]
+
+[ext_resource type="PackedScene" uid="uid://d0vhybty2h8ov" path="res://scenes/enemies/enemy.tscn" id="1_f0mvl"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy2.gd" id="2_yuxim"]
+[ext_resource type="Texture2D" uid="uid://c5qfnxrwwye4p" path="res://assets/graphics/enemies/enemy2_animation/enemy2.png" id="3_wnalc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuivf"]
+size = Vector2(42, 37)
+
+[sub_resource type="Animation" id="Animation_l4dk1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rvh8v"]
+resource_name = "enemy2_animation"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxws6"]
+_data = {
+"RESET": SubResource("Animation_l4dk1"),
+"enemy2_animation": SubResource("Animation_rvh8v")
+}
+
+[node name="Enemy1" instance=ExtResource("1_f0mvl")]
+script = ExtResource("2_yuxim")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -7)
+texture = ExtResource("3_wnalc")
+hframes = 24
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_iuivf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+autoplay = "enemy2_animation"
+libraries = {
+"": SubResource("AnimationLibrary_cxws6")
+}

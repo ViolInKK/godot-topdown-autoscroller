@@ -4,6 +4,7 @@ class_name LevelParent
 @export var maxAmountOfEnemies = 3
 
 var player_projectile_scene: PackedScene = preload("res://scenes/projectiles/playerProjectile.tscn")
+var is_finished: bool = false
 
 func _on_player_player_shoot(positions: PackedVector2Array) -> void:
 	for pos in positions:
@@ -15,6 +16,7 @@ func _on_increase_score_timeout():
 	Globals.score += 10
 
 func _on_player_player_death():
+	is_finished = true
 	$"IncreaseScore".stop()
 	$"EnemySpawn".stop()
 	$"ItemSpawn".stop()
@@ -26,4 +28,7 @@ func handleMaxAmountOfEnemies():
 		$EnemySpawn.start()
 	
 func _process(_delta):
-	handleMaxAmountOfEnemies()
+	if not is_finished:
+		handleMaxAmountOfEnemies()
+	else:
+		pass
