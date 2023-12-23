@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4pfw37en5ss7"]
+
+[ext_resource type="Script" path="res://scenes/UI/main_menu.gd" id="1_ctaft"]
+[ext_resource type="Texture2D" uid="uid://bxmhe35bt8f1e" path="res://assets/graphics/background/background1.png" id="2_hdybi"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ctaft")
+
+[node name="Background1" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("2_hdybi")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -15.5
+offset_right = 62.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start the Game"
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
