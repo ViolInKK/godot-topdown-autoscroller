@@ -6,6 +6,8 @@ signal enemy_shoot(position: Vector2)
 @onready var startingPosition: Vector2 = position
 @onready var rotationDirection: bool = randi_range(0, 1)
 
+var enemy_projectile_scene: PackedScene = preload("res://scenes/projectiles/enemyProjectile.tscn")
+
 const MAX_RADIUS: float = 5.0
 const ROTATION_SPEED: float = 5.0
 var d: float = 0.0
@@ -17,10 +19,6 @@ var health: int
 func die() -> void:
 	Globals.score += points
 	queue_free()
-
-func _on_reload_timeout() -> void:
-	enemy_shoot.emit(position)
-	$Reload.start()
 	
 func hitAnimation() -> void:
 	var hitTween = get_tree().create_tween()

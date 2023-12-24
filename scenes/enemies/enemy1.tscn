@@ -4,9 +4,11 @@
 [ext_resource type="Script" path="res://scenes/enemies/enemy1.gd" id="1_u6cra"]
 [ext_resource type="Texture2D" uid="uid://dj11xgn82tqlb" path="res://assets/graphics/enemies/enemy1/enem1.png" id="3_wpqsm"]
 
-[node name="Enemy" instance=ExtResource("1_dfm63")]
+[node name="Enemy1" instance=ExtResource("1_dfm63")]
 script = ExtResource("1_u6cra")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(1.125, 1.125)
 texture = ExtResource("3_wpqsm")
+
+[connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]

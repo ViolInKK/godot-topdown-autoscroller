@@ -45,7 +45,7 @@ _data = {
 "enemy2_animation": SubResource("Animation_rvh8v")
 }
 
-[node name="Enemy1" instance=ExtResource("1_f0mvl")]
+[node name="Enemy2" instance=ExtResource("1_f0mvl")]
 script = ExtResource("2_yuxim")
 
 [node name="Sprite2D" parent="." index="0"]
@@ -62,3 +62,5 @@ autoplay = "enemy2_animation"
 libraries = {
 "": SubResource("AnimationLibrary_cxws6")
 }
+
+[connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]

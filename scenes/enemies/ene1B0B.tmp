@@ -17,3 +17,5 @@ shape = SubResource("CircleShape2D_jhlmp")
 
 [node name="Reload" type="Timer" parent="."]
 autostart = true
+
+[connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
