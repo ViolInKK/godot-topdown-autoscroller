@@ -1,9 +1,9 @@
 extends Node2D
 class_name LevelParent 
 
-@export var maxAmountOfEnemies = 3
-
 var player_projectile_scene: PackedScene = preload("res://scenes/projectiles/playerProjectile.tscn")
+
+var maxAmountOfEnemies = 3
 var is_finished: bool = false
 
 func _on_player_player_shoot(positions: PackedVector2Array) -> void:

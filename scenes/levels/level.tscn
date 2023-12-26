@@ -1,13 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq6vwtjv7w5cn"]
+[gd_scene load_steps=6 format=3 uid="uid://dq6vwtjv7w5cn"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_jk4y2"]
 [ext_resource type="PackedScene" uid="uid://ctywgppdafgjd" path="res://scenes/player/player.tscn" id="1_kgbr6"]
 [ext_resource type="PackedScene" uid="uid://d0fbsbt85b7nb" path="res://scenes/UI/ui.tscn" id="3_uu5rj"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orng5"]
+size = Vector2(7, 364.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uos4p"]
+size = Vector2(5.00005, 647)
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_jk4y2")
 
 [node name="Player" parent="." instance=ExtResource("1_kgbr6")]
+metadata/_edit_lock_ = true
 
 [node name="Projectiles" type="Node2D" parent="."]
 
@@ -28,6 +35,27 @@ autostart = true
 [node name="ItemSpawn" type="Timer" parent="."]
 wait_time = 30.0
 autostart = true
+
+[node name="Border" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(-4, 174)
+shape = SubResource("RectangleShape2D_orng5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
+position = Vector2(316.5, 362.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_uos4p")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+position = Vector2(644, 182.25)
+shape = SubResource("RectangleShape2D_orng5")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Border"]
+position = Vector2(322, -3)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_uos4p")
 
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
 [connection signal="player_shoot" from="Player" to="." method="_on_player_player_shoot"]
